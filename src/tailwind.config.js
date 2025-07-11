@@ -1,4 +1,3 @@
-
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
 
@@ -14,14 +13,15 @@ export default {
         heading: ['Poppins', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        primary: {
-          DEFAULT: '#1e293b', // slate-800
-          hover: '#0f172a', // slate-900
+        'brand': {
+          'primary': '#204A86', // Biru tua 
+          'secondary': '#2F65B0', // Biru lebih terang aksen
+          'light': '#F8F9FA',   // Latar belakang halaman (off-white)
         },
-        accent: {
-          DEFAULT: '#06b6d4', // cyan-500
-          hover: '#0891b2', // cyan-600
-        },
+        'text': {
+          'primary': '#212529',   // Abu-abu gelap teks utama
+          'secondary': '#6C757D', // Abu-abu teks sekunder
+        }
       },
     },
   },

@@ -12,13 +12,13 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validasi sederhana
     if (!email || !password) {
       alert('Email dan password harus diisi!');
       return;
     }
-    
+
     try {
       await loginAction(email, password);
       // Redirect ke publications setelah login berhasil
@@ -29,7 +29,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-sky-50">
+    <div className="min-h-screen flex items-center justify-center bg-brand-light">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm">
         <div className="flex flex-col items-center mb-6">
           <img src={BpsLogo} alt="BPS Logo" className="h-16 w-16 mb-2" />
@@ -56,9 +56,8 @@ export default function LoginPage() {
               id="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 ${
-                loading ? 'bg-gray-100 cursor-not-allowed' : 'border-gray-300'
-              }`}
+              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 ${loading ? 'bg-gray-100 cursor-not-allowed' : 'border-gray-300'
+                }`}
               placeholder="Masukkan email"
               disabled={loading}
             />
@@ -70,9 +69,8 @@ export default function LoginPage() {
               id="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 ${
-                loading ? 'bg-gray-100 cursor-not-allowed' : 'border-gray-300'
-              }`}
+              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 ${loading ? 'bg-gray-100 cursor-not-allowed' : 'border-gray-300'
+                }`}
               placeholder="Masukkan password"
               disabled={loading}
             />
@@ -80,11 +78,10 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full font-bold py-2 px-6 rounded-lg transition-colors duration-300 ${
-              loading 
-                ? 'bg-gray-400 cursor-not-allowed' 
-                : 'bg-sky-700 hover:bg-sky-800 text-white'
-            }`}
+            className={`w-full font-bold py-3 px-6 rounded-lg transition-colors duration-300 ${loading
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-brand-primary hover:bg-brand-secondary text-white'
+              }`}
           >
             {loading ? (
               <div className="flex items-center justify-center">

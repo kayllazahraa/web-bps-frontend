@@ -1,83 +1,81 @@
 // src/components/PublicationListPage.jsx
-
 import React from 'react';
 import { usePublications } from '../hooks/usePublications';
 import { useNavigate } from 'react-router-dom';
 
+// Komponen Card untuk setiap publikasi
+const PublicationCard = ({ publication, onDelete }) => {
+    const navigate = useNavigate();
+
+    return (
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <img
+                src={publication.coverUrl}
+                alt={`Sampul ${publication.title}`}
+                className="w-full h-56 object-cover object-center"
+                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x300/cccccc/ffffff?text=Image+Error'; }}
+            />
+            <div className="p-5">
+                <p className="text-sm text-text-secondary mb-1">{publication.releaseDate}</p>
+                <h3 className="font-bold text-lg text-brand-primary truncate" title={publication.title}>
+                    {publication.title}
+                </h3>
+                <div className="mt-4 pt-4 border-t border-gray-200 flex justify-end gap-2">
+                    <button
+                        onClick={() => navigate(`/publications/edit/${publication.id}`)}
+                        className="text-xs font-bold text-yellow-600 hover:text-yellow-800 transition-colors"
+                    >
+                        Edit
+                    </button>
+                    <button
+                        onClick={() => onDelete(publication.id, publication.title)}
+                        className="text-xs font-bold text-red-600 hover:text-red-800 transition-colors"
+                    >
+                        Hapus
+                    </button>
+                     <button
+                        onClick={() => navigate(`/publications/${publication.id}`)}
+                        className="text-xs font-bold bg-brand-primary text-white py-1 px-3 rounded-full hover:bg-brand-secondary transition-colors"
+                    >
+                        Detail
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 export default function PublicationListPage() {
-  const { publications, deletePublication } = usePublications();
-  const navigate = useNavigate();
+    const { publications, deletePublication, loading, error } = usePublications();
 
-  const handleDelete = async (id, title) => {
-    if (window.confirm(`Apakah Anda yakin ingin menghapus publikasi "${title}"?`)) {
-      try {
-        await deletePublication(id);
-        alert('Publikasi berhasil dihapus!');
-      } catch (err) {
-        alert('Gagal menghapus publikasi: ' + err.message);
-      }
-    }
-  };
+    const handleDelete = async (id, title) => {
+        if (window.confirm(`Yakin ingin menghapus publikasi "${title}"?`)) {
+            try {
+                await deletePublication(id);
+                alert('Publikasi berhasil dihapus.');
+            } catch (err) {
+                alert('Gagal menghapus: ' + err.message);
+            }
+        }
+    };
 
-  return (
-    <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-      <header className="mb-8 text-center md:text-left">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">Daftar Publikasi BPS Provinsi Bengkulu</h1>
-        <p className="text-gray-500 mt-1">Sumber data publikasi terkini</p>
-      </header>
-      <div className="relative overflow-x-auto shadow-xl rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500">
-          <thead className="text-xs text-white uppercase bg-slate-700">
-            <tr>
-              <th scope="col" className="px-6 py-3 text-center w-16">No</th>
-              <th scope="col" className="px-6 py-3">Judul</th>
-              <th scope="col" className="px-6 py-3">Tanggal Rilis</th>
-              <th scope="col" className="px-6 py-3 text-center">Sampul</th>
-              <th scope="col" className="px-6 py-3 text-center">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {publications.map((pub, idx) => (
-              <tr key={pub.id} className="bg-white border-b hover:bg-gray-50 transition-colors duration-200">
-                <td className="px-6 py-4 font-medium text-gray-900 text-center">{idx + 1}</td>
-                <td className="px-6 py-4 font-semibold text-gray-800">{pub.title}</td>
-                <td className="px-6 py-4 text-gray-600">{pub.releaseDate}</td>
-                <td className="px-6 py-4 flex justify-center items-center">
-                  <img
-                    src={pub.coverUrl}
-                    alt={`Sampul ${pub.title}`}
-                    className="h-24 w-auto object-cover rounded shadow-md"
-                    onError={e => { e.target.onerror = null; e.target.src = 'https://placehold.co/100x140/cccccc/ffffff?text=Error'; }}
-                  />
-                </td>
-                <td className="px-6 py-4 text-center space-x-2">
-                  {/* Tombol Detail */}
-                  <button
-                    className="bg-sky-500 hover:bg-sky-600 text-white px-3 py-1 rounded text-xs font-semibold"
-                    onClick={() => navigate(`/publications/${pub.id}`)}
-                  >
-                    Detail
-                  </button>
-                  {/* Tombol Edit */}
-                  <button
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-xs font-semibold"
-                    onClick={() => navigate(`/publications/edit/${pub.id}`)}
-                  >
-                    Edit
-                  </button>
-                  {/* Tombol Hapus */}
-                  <button
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold"
-                    onClick={() => handleDelete(pub.id, pub.title)}
-                  >
-                    Hapus
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <header className="mb-10 text-center">
+                <h1 className="text-4xl font-bold font-heading text-brand-primary">Daftar Publikasi</h1>
+                <p className="text-lg text-text-secondary mt-2">Jelajahi data dan publikasi terkini dari BPS Provinsi Bengkulu.</p>
+            </header>
+
+            {loading && <p className="text-center">Memuat data...</p>}
+            {error && <p className="text-center text-red-500">Gagal memuat data: {error}</p>}
+            
+            {!loading && !error && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {publications.map((pub) => (
+                        <PublicationCard key={pub.id} publication={pub} onDelete={handleDelete} />
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 }
