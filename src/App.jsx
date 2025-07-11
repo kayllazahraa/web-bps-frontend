@@ -27,12 +27,10 @@ export default function App() {
 
                     {/* Protected Routes */}
                     <Route path="/publications" element={<ProtectedRoute><PublicationListPage /></ProtectedRoute>} />
-                    
-                    {/* PASTIKAN URUTAN INI BENAR: yang spesifik di atas */}
                     <Route path="/publications/add" element={<ProtectedRoute><AddPublicationPage /></ProtectedRoute>} />
                     <Route path="/publications/edit/:id" element={<ProtectedRoute><EditPublicationPage /></ProtectedRoute>} />
                     <Route path="/publications/:id" element={<ProtectedRoute><PublicationDetailPage /></ProtectedRoute>} />
-                    
+
                     {/* Redirect Routes */}
                     <Route path="/" element={<Navigate to="/publications" replace />} />
                     <Route path="*" element={<Navigate to="/publications" replace />} />
