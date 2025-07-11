@@ -42,7 +42,6 @@ export default function EditPublicationPage() {
       alert('Judul dan Tanggal Rilis harus diisi!');
       return;
     }
-
     let newCoverUrl = coverUrl;
     if (coverFile) {
       try {
