@@ -1,15 +1,13 @@
 // src/api/axios.js
 import axios from "axios";
-
 const apiClient = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: import.meta.env.VITE_API_URL + "/api",
   withCredentials: true,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
   },
 });
-
 // Interceptor untuk menambahkan Authorization header dari localStorage
 apiClient.interceptors.request.use(
   (config) => {
@@ -21,5 +19,4 @@ apiClient.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
-
 export default apiClient;
