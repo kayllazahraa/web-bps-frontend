@@ -1,5 +1,5 @@
 // src/context/PublicationContext.jsx
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { publicationService } from '../services/publicationService';
 import { useAuth } from '../hooks/useAuth';
 
@@ -7,40 +7,42 @@ const PublicationContext = createContext(null);
 
 const PublicationProvider = ({ children }) => {
     const [publications, setPublications] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); // Set loading ke true di awal
     const [error, setError] = useState(null);
-    const { token } = useAuth(); // Mengambil token dari AuthContext
+    const { token } = useAuth();
 
+    // Menggunakan useCallback untuk stabilitas fungsi
     const fetchPublications = useCallback(async () => {
-        if (!token) {
+        // Hanya fetch data jika ada token
+        if (token) {
+            setLoading(true);
+            setError(null);
+            try {
+                const data = await publicationService.getPublications();
+                setPublications(data);
+            } catch (err) {
+                setError(err.message);
+                console.error("Gagal mengambil data publikasi:", err);
+            } finally {
+                setLoading(false);
+            }
+        } else {
+            // Jika tidak ada token (logout atau sesi habis), kosongkan data
             setPublications([]);
             setLoading(false);
-            return;
         }
+    }, [token]); // Dependensi hanya pada token
 
-        setLoading(true);
-        setError(null);
-
-        try {
-            const data = await publicationService.getPublications();
-            setPublications(data);
-        } catch (err) {
-            setError(err.message);
-            console.error("Gagal mengambil data publikasi:", err);
-        } finally {
-            setLoading(false);
-        }
-    }, [token]);
-
+    // Jalankan fetchPublications setiap kali nilai token berubah
     useEffect(() => {
         fetchPublications();
     }, [fetchPublications]);
 
-    // Interaksi fungsi tambah, edit, dan hapus publikasi dengan API
     const addPublication = async (newPub) => {
         try {
             const added = await publicationService.addPublication(newPub);
-            setPublications((prev) => [added, ...prev]);
+            // Refresh daftar setelah menambah
+            fetchPublications(); 
             setError(null);
         } catch (err) {
             setError(err.message);
@@ -69,9 +71,10 @@ const PublicationProvider = ({ children }) => {
             throw err;
         }
     };
-
+    
     const getPublication = async (id) => {
         try {
+            // Tidak perlu loading state di sini agar UI tidak berkedip
             return await publicationService.getPublicationById(id);
         } catch (err) {
             setError(err.message);
