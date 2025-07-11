@@ -1,6 +1,8 @@
 // src/components/Navbar.jsx
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+
 const navItems = [
     { id: "publications", label: "Daftar Publikasi", path: "/publications" },
     { id: "add", label: "Tambah Publikasi", path: "/publications/add" },
@@ -12,7 +14,6 @@ function BpsLogo() {
 
             src="https://res.cloudinary.com/djcm0swgo/image/upload/v1751775675/bps-
 logo_1_ldppzk.png"
-
             alt="BPS Logo"
             className="h-12 w-12"
         />
@@ -20,10 +21,18 @@ logo_1_ldppzk.png"
 }
 export default function Navbar() {
     const location = useLocation();
+    const navigate = useNavigate();
+    const {logoutAction} = useAuth();
+
     const handleLogout = async () => {
-        // Akan diisi nanti
+        try {
+            await logoutAction();
+            navigate('/login'); // Redirect ke login setelah berhasil logout
+        } catch (error) {
+            alert('Gagal logout: ' + error.message);
+        }
     };
-    // Jangan tampilkan navbar di halaman login
+
     if (location.pathname === "/login") {
         return null;
     }

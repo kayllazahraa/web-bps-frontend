@@ -11,31 +11,30 @@ const PublicationProvider = ({ children }) => {
     const [error, setError] = useState(null);
     const { token } = useAuth(); // Mengambil token dari AuthContext
 
-    useEffect(() => {
-        const fetchData = async () => {
-            // Jangan fetch data jika tidak ada token (user belum login)
-            if (!token) {
-                setPublications([]); // Kosongkan data jika logout
-                setLoading(false);
-                return;
-            }
+    const fetchPublications = useCallback(async () => {
+        if (!token) {
+            setPublications([]);
+            setLoading(false);
+            return;
+        }
 
-            setLoading(true);
-            setError(null);
+        setLoading(true);
+        setError(null);
 
-            try {
-                const data = await publicationService.getPublications();
-                setPublications(data);
-            } catch (err) {
-                setError(err.message);
-                console.error("Gagal mengambil data publikasi:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
+        try {
+            const data = await publicationService.getPublications();
+            setPublications(data);
+        } catch (err) {
+            setError(err.message);
+            console.error("Gagal mengambil data publikasi:", err);
+        } finally {
+            setLoading(false);
+        }
     }, [token]);
+
+    useEffect(() => {
+        fetchPublications();
+    }, [fetchPublications]);
 
     // Interaksi fungsi tambah, edit, dan hapus publikasi dengan API
     const addPublication = async (newPub) => {
@@ -49,12 +48,35 @@ const PublicationProvider = ({ children }) => {
         }
     };
 
-    const editPublication = (updatedPub) => {
-        setPublications(prev => prev.map(pub => pub.id === updatedPub.id ? updatedPub : pub));
+    const editPublication = async (id, updatedPub) => {
+        try {
+            const updated = await publicationService.updatePublication(id, updatedPub);
+            setPublications(prev => prev.map(pub => (pub.id === updated.id ? updated : pub)));
+            setError(null);
+        } catch (err) {
+            setError(err.message);
+            throw err;
+        }
     };
 
-    const deletePublication = (id) => {
-        setPublications(prev => prev.filter(pub => pub.id !== id));
+    const deletePublication = async (id) => {
+        try {
+            await publicationService.deletePublication(id);
+            setPublications(prev => prev.filter(pub => pub.id !== id));
+            setError(null);
+        } catch (err) {
+            setError(err.message);
+            throw err;
+        }
+    };
+
+    const getPublication = async (id) => {
+        try {
+            return await publicationService.getPublicationById(id);
+        } catch (err) {
+            setError(err.message);
+            throw err;
+        }
     };
 
     return (
@@ -64,7 +86,8 @@ const PublicationProvider = ({ children }) => {
             error,
             addPublication,
             editPublication,
-            deletePublication
+            deletePublication,
+            getPublication
         }}>
             {children}
         </PublicationContext.Provider>

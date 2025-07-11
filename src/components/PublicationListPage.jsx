@@ -5,8 +5,19 @@ import { usePublications } from '../hooks/usePublications';
 import { useNavigate } from 'react-router-dom';
 
 export default function PublicationListPage() {
-  const { publications } = usePublications();
+  const { publications, deletePublication } = usePublications();
   const navigate = useNavigate();
+
+  const handleDelete = async (id, title) => {
+    if (window.confirm(`Apakah Anda yakin ingin menghapus publikasi "${title}"?`)) {
+      try {
+        await deletePublication(id);
+        alert('Publikasi berhasil dihapus!');
+      } catch (err) {
+        alert('Gagal menghapus publikasi: ' + err.message);
+      }
+    }
+  };
 
   return (
     <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -39,12 +50,27 @@ export default function PublicationListPage() {
                     onError={e => { e.target.onerror = null; e.target.src = 'https://placehold.co/100x140/cccccc/ffffff?text=Error'; }}
                   />
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 text-center space-x-2">
+                  {/* Tombol Detail */}
+                  <button
+                    className="bg-sky-500 hover:bg-sky-600 text-white px-3 py-1 rounded text-xs font-semibold"
+                    onClick={() => navigate(`/publications/${pub.id}`)}
+                  >
+                    Detail
+                  </button>
+                  {/* Tombol Edit */}
                   <button
                     className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-xs font-semibold"
                     onClick={() => navigate(`/publications/edit/${pub.id}`)}
                   >
                     Edit
+                  </button>
+                  {/* Tombol Hapus */}
+                  <button
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold"
+                    onClick={() => handleDelete(pub.id, pub.title)}
+                  >
+                    Hapus
                   </button>
                 </td>
               </tr>

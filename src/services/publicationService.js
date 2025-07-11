@@ -18,8 +18,37 @@ export const publicationService = {
         } catch (error) {
             throw new Error('Gagal mengambil data: ' + error.response?.data?.message || 'Terjadi kesalahan');
         }
+    },
+
+    //melihat detail publikasi
+    async getPublicationById(id) {
+        try {
+            const response = await apiClient.get(`/publikasi/${id}`);
+            return response.data;
+        } catch (error) {
+            throw new Error('Gagal mengambil detail data: ' + (error.response?.data?.message || 'Terjadi kesalahan'));
+        }
+    },
+
+    // edit publikasi
+    async updatePublication(id, updatedPublication) {
+        try {
+            const response = await apiClient.put(`/publikasi/${id}`, updatedPublication);
+            return response.data;
+        } catch (error) {
+            throw new Error('Gagal memperbarui data: ' + (error.response?.data?.message || 'Terjadi kesalahan'));
+        }
+    },
+
+    // hapus publikasi
+    async deletePublication(id) {
+        try {
+            await apiClient.delete(`/publikasi/${id}`);
+        } catch (error) {
+            throw new Error('Gagal menghapus data: ' + (error.response?.data?.message || 'Terjadi kesalahan'));
+        }
     }
-}
+};
 
 export async function uploadImageToCloudinary(file) {
     const formData = new FormData();

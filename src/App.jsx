@@ -10,10 +10,11 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
 import PublicationListPage from "./components/PublicationListPage";
 import AddPublicationPage from "./components/AddPublicationPage";
+import EditPublicationPage from "./components/EditPublicationPage";
+import PublicationDetailPage from "./components/PublicationDetailPage";
 
 import Footer from "./components/Footer";
 import LoginPage from "./components/LoginPage";
-import EditPublicationPage from "./components/EditPublicationPage";
 
 
 export default function App() {
@@ -24,31 +25,15 @@ export default function App() {
                 <Routes>
                     {/* Public Route */}
                     <Route path="/login" element={<LoginPage />} />
+
                     {/* Protected Routes */}
-                    <Route
-                        path="/publications"
-                        element={
-                            <ProtectedRoute>
-                                <PublicationListPage />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path="/publications/add"
-                        element={
-                            <ProtectedRoute>
-                                <AddPublicationPage />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path="/publications/edit/:id"
-                        element={
-                            <ProtectedRoute>
-                                <EditPublicationPage />
-                            </ProtectedRoute>
-                        }
-                    />
+                    <Route path="/publications" element={<ProtectedRoute><PublicationListPage /></ProtectedRoute>} />
+                    <Route path="/publications/add" element={<ProtectedRoute><AddPublicationPage /></ProtectedRoute>} />
+                    <Route path="/publications/edit/:id" element={<ProtectedRoute><EditPublicationPage /></ProtectedRoute>} />
+
+                    {/* Rute untuk detail publikasi */}
+                    <Route path="/publications/:id" element={<ProtectedRoute><PublicationDetailPage /></ProtectedRoute>} />
+
                     {/* Redirect Routes */}
                     <Route path="/" element={<Navigate to="/publications" replace />} />
                     <Route path="*" element={<Navigate to="/publications" replace />} />
