@@ -80,7 +80,7 @@ export default function LoginPage() {
             disabled={loading}
             className={`w-full font-bold py-3 px-6 rounded-lg transition-colors duration-300 ${loading
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-brand-primary hover:bg-brand-secondary text-white'
+                : 'bg-brand-primary hover:bg-brand-secondary text-primary'
               }`}
           >
             {loading ? (
