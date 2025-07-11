@@ -36,7 +36,7 @@ export default function EditPublicationPage() {
     fetchPublication();
   }, [id, getPublication, navigate]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !releaseDate) {
       alert('Judul dan Tanggal Rilis harus diisi!');
