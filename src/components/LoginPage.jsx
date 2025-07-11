@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-// Logo Komponen
+// Komponen Logo
 const BpsLogo = () => (
     <img
         src="https://res.cloudinary.com/djcm0swgo/image/upload/v1751775675/bps-logo_1_ldppzk.png"
@@ -33,11 +33,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-light px-4">
+    // Latar belakang abu-abu kebiruan
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+      {/* Kartu Login putih dengan bayangan */}
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
         <div className="flex flex-col items-center mb-6">
           <BpsLogo />
-          <h1 className="text-2xl font-bold text-text-primary text-center">Login</h1>
+          <h1 className="text-2xl font-bold text-gray-800 text-center">Login</h1>
         </div>
 
         {error && (
@@ -48,25 +50,25 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-1">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-1">Email</label>
             <input
               type="text"
               id="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
               placeholder="Masukkan email"
               disabled={loading}
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-text-secondary mb-1">Password</label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-600 mb-1">Password</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
               placeholder="Masukkan password"
               disabled={loading}
             />
@@ -74,10 +76,11 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
+            // Tombol dengan warna biru langit
             className={`w-full font-bold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center ${
               loading 
                 ? 'bg-gray-400 cursor-not-allowed' 
-                : 'bg-brand-primary hover:bg-brand-secondary text-white'
+                : 'bg-sky-600 hover:bg-sky-700 text-white'
             }`}
           >
             {loading ? (
