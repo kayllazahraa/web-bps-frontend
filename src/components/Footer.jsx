@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="bg-[#02557f] text-center py-4 text-xs sm:text-sm">
+      <div className="text-center py-4 text-xs sm:text-sm">
         <p>© 2025 Politeknik Statistika STIS</p>
         <p>
           Created by Kaylla Zahrani{' '}
