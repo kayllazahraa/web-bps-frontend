@@ -33,7 +33,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-tr from-blue-700 via-blue-800 to-gray-900">
+    // Latar belakang abu-abu kebiruan
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
       {/* Kartu Login putih dengan bayangan */}
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
         <div className="flex flex-col items-center mb-6">
