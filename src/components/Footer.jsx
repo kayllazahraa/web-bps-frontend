@@ -9,7 +9,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center space-x-3 mb-3">
             <img
-              src="https://i.postimg.cc/dVwcbSWF/bps-logo.png"
+              src="https://res.cloudinary.com/djcm0swgo/image/upload/v1751775675/bps-logo_1_ldppzk.png"
               alt="Logo BPS"
               className="h-12 w-auto"
             />
