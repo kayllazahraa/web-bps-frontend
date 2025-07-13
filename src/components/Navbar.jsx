@@ -25,49 +25,63 @@ export default function Navbar() {
         }
     };
 
-    if (!user) {
-        return null;
-    }
-
     const navItems = [
         { id: "publications", label: "Daftar Publikasi", path: "/publications" },
         { id: "add", label: "Tambah Publikasi", path: "/publications/add" },
     ];
 
+    // Jika user sudah login, tampilkan navbar lengkap
+    if (user) {
+        return (
+            <header className="bg-[#0369A1] shadow-lg sticky top-0 z-50">
+                <nav className="container mx-auto px-4">
+                    <div className="flex items-center justify-between h-20">
+                        <Link to="/publications" className="flex items-center gap-3">
+                            <BpsLogo />
+                            <span className="text-white text-lg font-bold tracking-wider hidden sm:block">
+                                BPS PROVINSI BENGKULU
+                            </span>
+                        </Link>
+                        <div className="flex items-center gap-2">
+                            {navItems.map((item) => {
+                                const isActive = location.pathname === item.path;
+                                return (
+                                    <Link
+                                        key={item.id}
+                                        to={item.path}
+                                        className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors duration-300 ${
+                                            isActive
+                                                ? "bg-white text-[#0369A1]"
+                                                : "text-slate-100 hover:bg-white/20 hover:text-white"
+                                        }`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                );
+                            })}
+                            <button
+                                onClick={handleLogout}
+                                className="px-4 py-2 rounded-md text-sm font-semibold bg-red-500 text-white hover:bg-red-600 transition-colors duration-300 shadow-sm"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        );
+    }
+
+    // Jika user belum login tampil header sederhana
     return (
         <header className="bg-[#0369A1] shadow-lg sticky top-0 z-50">
             <nav className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
-                    <Link to="/publications" className="flex items-center gap-3">
+                <div className="flex items-center justify-start h-20">
+                    <div className="flex items-center gap-3">
                         <BpsLogo />
                         <span className="text-white text-lg font-bold tracking-wider hidden sm:block">
                             BPS PROVINSI BENGKULU
                         </span>
-                    </Link>
-                    <div className="flex items-center gap-2">
-                        {navItems.map((item) => {
-                            // --- PERUBAHAN DI BARIS INI ---
-                            const isActive = location.pathname === item.path; 
-                            return (
-                                <Link
-                                    key={item.id}
-                                    to={item.path}
-                                    className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors duration-300 ${
-                                        isActive
-                                            ? "bg-white text-[#0369A1]" // Style for the active page link
-                                            : "text-slate-100 hover:bg-white/20 hover:text-white" // Style for inactive and hovered links
-                                    }`}
-                                >
-                                    {item.label}
-                                </Link>
-                            );
-                        })}
-                        <button
-                            onClick={handleLogout}
-                            className="px-4 py-2 rounded-md text-sm font-semibold bg-red-500 text-white hover:bg-red-600 transition-colors duration-300 shadow-sm"
-                        >
-                            Logout
-                        </button>
                     </div>
                 </div>
             </nav>
