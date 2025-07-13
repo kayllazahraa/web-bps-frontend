@@ -98,13 +98,20 @@ export default function AddPublicationPage() {
                     />
                 </div>
                 <div className="flex justify-end">
-                    <button
-                        type="submit"
-                        className="bg-brand-primary hover:bg-brand-secondary text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
-                    >
-                        Tambah
-                    </button>
-                </div>
+                    <div className="flex justify-end space-x-2">
+                        <button
+                            type="button"
+                            onClick={() => navigate('/publications')}
+                            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition-colors duration-300"
+                        >
+                            Batal
+                        </button>
+                        <button
+                            onClick={() => navigate('/publications')}
+                            className="bg-sky-700 hover:bg-sky-800 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
+                        >
+                            Tambah
+                    </div>
             </form>
         </div>
     );
