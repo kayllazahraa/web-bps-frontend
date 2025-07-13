@@ -32,14 +32,14 @@ const PublicationCard = ({ publication, onDelete }) => {
                     {/* Tombol Detail */}
                     <button
                         onClick={() => navigate(`/publications/${publication.id}`)}
-                        className="text-xs font-bold bg-yellow-500 text-white py-1 px-3 rounded-full hover:bg-yellow-600 transition-colors"
+                        className="text-xs font-bold bg-green-500 text-white py-1 px-3 rounded-full hover:bg-green-600 transition-colors"
                     >
                         Detail
                     </button>
                     {/* Tombol Edit */}
                     <button
                         onClick={() => navigate(`/publications/edit/${publication.id}`)}
-                        className="text-xs font-bold bg-green-500 text-white py-1 px-3 rounded-full hover:bg-green-600 transition-colors"
+                        className="text-xs font-bold bg-yellow-500 text-white py-1 px-3 rounded-full hover:bg-yellow-600 transition-colors"
                     >
                         Edit
                     </button>
