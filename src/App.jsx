@@ -14,6 +14,7 @@ import EditPublicationPage from "./components/EditPublicationPage";
 import PublicationDetailPage from "./components/PublicationDetailPage";
 import Footer from "./components/Footer";
 import LoginPage from "./components/LoginPage";
+import RegistrationPage from "./components/RegistrationPage";
 
 
 export default function App() {
@@ -24,6 +25,8 @@ export default function App() {
                 <Routes>
                     {/* Public Route */}
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegistrationPage />} />
+                    
                     {/* Protected Routes */}
                     <Route path="/publications" element={<ProtectedRoute><PublicationListPage /></ProtectedRoute>} />
                     <Route path="/publications/add" element={<ProtectedRoute><AddPublicationPage /></ProtectedRoute>} />

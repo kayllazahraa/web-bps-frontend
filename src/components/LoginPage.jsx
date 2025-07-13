@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 // Komponen Logo
 const BpsLogo = () => (
-    <img
-        src="https://res.cloudinary.com/djcm0swgo/image/upload/v1751775675/bps-logo_1_ldppzk.png"
-        alt="BPS Logo"
-        className="h-16 w-16 mb-2"
-    />
+  <img
+    src="https://res.cloudinary.com/djcm0swgo/image/upload/v1751775675/bps-logo_1_ldppzk.png"
+    alt="BPS Logo"
+    className="h-16 w-16 mb-2"
+  />
 );
 
 export default function LoginPage() {
@@ -23,7 +24,7 @@ export default function LoginPage() {
       alert('Email dan password harus diisi!');
       return;
     }
-    
+
     try {
       await loginAction(email, password);
       navigate('/publications');
@@ -76,12 +77,10 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            // Tombol dengan warna biru langit
-            className={`w-full font-bold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center ${
-              loading 
-                ? 'bg-gray-400 cursor-not-allowed' 
+            className={`w-full font-bold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center ${loading
+                ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-sky-600 hover:bg-sky-700 text-white'
-            }`}
+              }`}
           >
             {loading ? (
               <>
@@ -96,6 +95,14 @@ export default function LoginPage() {
             )}
           </button>
         </form>
+        <div className="text-center mt-6">
+          <p className="text-sm text-gray-600">
+            Belum punya akun?{' '}
+            <Link to="/register" className="font-semibold text-sky-600 hover:text-sky-700">
+              Daftar di sini
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
