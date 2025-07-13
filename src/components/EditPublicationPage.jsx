@@ -135,8 +135,8 @@ export default function EditPublicationPage() {
             Batal
           </button>
           <button
-            type="submit"
-            className="bg-brand-primary hover:bg-brand-secondary text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
+            onClick={() => navigate('/publications')}
+            className="bg-sky-700 hover:bg-sky-800 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
           >
             Simpan Perubahan
           </button>
