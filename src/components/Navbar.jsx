@@ -40,7 +40,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-20">
                     <Link to="/publications" className="flex items-center gap-3">
                         <BpsLogo />
-                        <span className="text-brand-primary text-lg font-bold tracking-wider hidden sm:block">
+                        <span className="text-white text-lg font-bold tracking-wider hidden sm:block">
                             BPS PROVINSI BENGKULU
                         </span>
                     </Link>
@@ -51,10 +51,11 @@ export default function Navbar() {
                                 <Link
                                     key={item.id}
                                     to={item.path}
-                                    className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors duration-300 ${isActive
-                                            ? "bg-brand-primary text-white"
-                                            : "text-text-secondary hover:bg-gray-100 hover:text-brand-primary"
-                                        }`}
+                                    className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors duration-300 ${
+                                        isActive
+                                            ? "bg-white text-[#0369A1]" // Style for the active page link
+                                            : "text-slate-100 hover:bg-white/20 hover:text-white" // Style for inactive and hovered links
+                                    }`}
                                 >
                                     {item.label}
                                 </Link>
