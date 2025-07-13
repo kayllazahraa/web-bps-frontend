@@ -7,6 +7,12 @@ import { useNavigate } from 'react-router-dom';
 const PublicationCard = ({ publication, onDelete }) => {
     const navigate = useNavigate();
 
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        return new Date(dateString).toLocaleDateString('id-ID', options);
+    };
+
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
             <img
@@ -16,10 +22,12 @@ const PublicationCard = ({ publication, onDelete }) => {
                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x300/cccccc/ffffff?text=Image+Error'; }}
             />
             <div className="p-5">
-                <p className="text-sm text-text-secondary mb-1">{publication.releaseDate}</p>
-                <h3 className="font-bold text-lg text-brand-primary truncate" title={publication.title}>
+                <p className="text-sm text-text-secondary mb-1">{formatDate(publication.releaseDate)}</p>
+                
+                <h3 className="font-bold text-lg text-brand-primary h-14" title={publication.title}>
                     {publication.title}
                 </h3>
+
                 <div className="mt-4 pt-4 border-t border-gray-200 flex justify-end gap-2">
                     {/* Tombol Edit */}
                     <button
@@ -38,7 +46,7 @@ const PublicationCard = ({ publication, onDelete }) => {
                     {/* Tombol Detail */}
                     <button
                         onClick={() => navigate(`/publications/${publication.id}`)}
-                        className="text-xs font-bold bg-green-500 text-white py-1 px-3 rounded-full hover:bg-green-600 transition-colors"
+                        className="text-xs font-bold bg-brand-primary text-white py-1 px-3 rounded-full hover:bg-brand-secondary transition-colors"
                     >
                         Detail
                     </button>
