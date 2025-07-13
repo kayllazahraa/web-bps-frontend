@@ -35,7 +35,7 @@ export default function Navbar() {
     ];
 
     return (
-        <header className="bg-brand-primary shadow-lg sticky top-0 z-50">
+        <header className="bg-[#0369A1] shadow-lg sticky top-0 z-50">
             <nav className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     <Link to="/publications" className="flex items-center gap-3">
