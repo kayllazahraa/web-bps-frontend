@@ -29,10 +29,17 @@ const PublicationCard = ({ publication, onDelete }) => {
                 </h3>
 
                 <div className="mt-4 pt-4 border-t border-gray-200 flex justify-end gap-2">
+                    {/* Tombol Detail */}
+                    <button
+                        onClick={() => navigate(`/publications/${publication.id}`)}
+                        className="text-xs font-bold bg-yellow-500 text-white py-1 px-3 rounded-full hover:bg-yellow-600 transition-colors"
+                    >
+                        Detail
+                    </button>
                     {/* Tombol Edit */}
                     <button
                         onClick={() => navigate(`/publications/edit/${publication.id}`)}
-                        className="text-xs font-bold bg-yellow-500 text-white py-1 px-3 rounded-full hover:bg-yellow-600 transition-colors"
+                        className="text-xs font-bold bg-green-500 text-white py-1 px-3 rounded-full hover:bg-green-600 transition-colors"
                     >
                         Edit
                     </button>
@@ -42,13 +49,6 @@ const PublicationCard = ({ publication, onDelete }) => {
                         className="text-xs font-bold bg-red-500 text-white py-1 px-3 rounded-full hover:bg-red-600 transition-colors"
                     >
                         Hapus
-                    </button>
-                    {/* Tombol Detail */}
-                    <button
-                        onClick={() => navigate(`/publications/${publication.id}`)}
-                        className="text-xs font-bold bg-brand-primary text-white py-1 px-3 rounded-full hover:bg-brand-secondary transition-colors"
-                    >
-                        Detail
                     </button>
                 </div>
             </div>
