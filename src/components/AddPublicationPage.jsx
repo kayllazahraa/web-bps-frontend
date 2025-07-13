@@ -1,5 +1,5 @@
 // src/components/AddPublicationPage.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { usePublications } from '../hooks/usePublications';
 import { useNavigate } from 'react-router-dom';
 import { uploadImageToCloudinary } from '../services/publicationService';
@@ -98,21 +98,13 @@ export default function AddPublicationPage() {
                     />
                 </div>
                 <div className="flex justify-end">
-                    <div className="flex justify-end space-x-2">
-                        <button
-                            type="button"
-                            onClick={() => navigate('/publications')}
-                            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition-colors duration-300"
-                        >
-                            Batal
-                        </button>
-                        <button
-                            onClick={() => navigate('/publications')}
-                            className="bg-sky-700 hover:bg-sky-800 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
-                        >
-                            Tambah
-                        </button>
-                    </div>
+                    <button
+                        onClick={() => navigate('/publications')}
+                        className="bg-sky-700 hover:bg-sky-800 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
+                    >
+                        Tambah
+                    </button>
+                </div>
             </form>
         </div>
     );
