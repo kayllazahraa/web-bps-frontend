@@ -46,7 +46,8 @@ export default function Navbar() {
                     </Link>
                     <div className="flex items-center gap-2">
                         {navItems.map((item) => {
-                            const isActive = location.pathname.startsWith(item.path);
+                            // --- PERUBAHAN DI BARIS INI ---
+                            const isActive = location.pathname === item.path; 
                             return (
                                 <Link
                                     key={item.id}
