@@ -21,19 +21,22 @@ const PublicationCard = ({ publication, onDelete }) => {
                     {publication.title}
                 </h3>
                 <div className="mt-4 pt-4 border-t border-gray-200 flex justify-end gap-2">
+                    {/* Tombol Edit */}
                     <button
                         onClick={() => navigate(`/publications/edit/${publication.id}`)}
-                        className="text-xs font-bold text-yellow-600 hover:text-yellow-800 transition-colors"
+                        className="text-xs font-bold bg-yellow-500 text-white py-1 px-3 rounded-full hover:bg-yellow-600 transition-colors"
                     >
                         Edit
                     </button>
+                    {/* Tombol Hapus */}
                     <button
                         onClick={() => onDelete(publication.id, publication.title)}
-                        className="text-xs font-bold text-red-600 hover:text-red-800 transition-colors"
+                        className="text-xs font-bold bg-red-500 text-white py-1 px-3 rounded-full hover:bg-red-600 transition-colors"
                     >
                         Hapus
                     </button>
-                     <button
+                    {/* Tombol Detail */}
+                    <button
                         onClick={() => navigate(`/publications/${publication.id}`)}
                         className="text-xs font-bold bg-brand-primary text-white py-1 px-3 rounded-full hover:bg-brand-secondary transition-colors"
                     >
