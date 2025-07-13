@@ -1,5 +1,5 @@
 // src/components/AddPublicationPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePublications } from '../hooks/usePublications';
 import { useNavigate } from 'react-router-dom';
 import { uploadImageToCloudinary } from '../services/publicationService';
