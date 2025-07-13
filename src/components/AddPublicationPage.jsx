@@ -111,6 +111,7 @@ export default function AddPublicationPage() {
                             className="bg-sky-700 hover:bg-sky-800 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
                         >
                             Tambah
+                        </button>
                     </div>
             </form>
         </div>
