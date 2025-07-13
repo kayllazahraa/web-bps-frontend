@@ -41,7 +41,7 @@ export default function RegistrationPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-tr from-blue-700 via-blue-800 to-gray-900">
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
             <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
                 <div className="flex flex-col items-center mb-6">
                     <BpsLogo />
