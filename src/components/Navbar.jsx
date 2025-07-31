@@ -39,7 +39,7 @@ export default function Navbar() {
                         <Link to="/publications" className="flex items-center gap-3">
                             <BpsLogo />
                             <span className="text-white text-lg font-bold tracking-wider hidden sm:block">
-                                BPS PROVINSI BENGKULU
+                                BPS PROVINSI NUSA TENGGARA TIMUR
                             </span>
                         </Link>
                         <div className="flex items-center gap-2">
@@ -80,7 +80,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-3">
                         <BpsLogo />
                         <span className="text-white text-lg font-bold tracking-wider hidden sm:block">
-                            BPS PROVINSI BENGKULU
+                            BPS PROVINSI NUSA TENGGARA TIMUR
                         </span>
                     </div>
                 </div>

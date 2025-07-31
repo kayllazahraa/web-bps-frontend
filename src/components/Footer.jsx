@@ -14,19 +14,19 @@ export default function Footer() {
               className="h-12 w-auto"
             />
             <span className="text-base font-bold uppercase tracking-wide">
-              Badan Pusat Statistik Provinsi Bengkulu
+              Badan Pusat Statistik Provinsi Nusa Tenggara Timur
             </span>
           </div>
           <p className="leading-relaxed text-white/90">
-            Jl. Adam Malik Km.8<br />
-            Kota Bengkulu 38225 Indonesia<br />
-            Telp (62-736) 349117-118; <br />
+            Jl. R. Suprapto No. 5<br />
+            Kupang - 85111 Indonesia<br />
+            Telp (0380) 826289; 821755; <br />
             Mailbox:{' '}
             <a
-              href="mailto:bengkulu@bps.go.id"
+              href="mailto:ntt@bps.go.id"
               className="hover:text-gray-300"
             >
-              bengkulu@bps.go.id
+              ntt@bps.go.id
             </a>
           </p>
           <img

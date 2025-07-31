@@ -74,7 +74,7 @@ export default function PublicationListPage() {
         <div>
             <header className="mb-10 text-center">
                 <h1 className="text-4xl font-bold font-heading text-brand-primary">Daftar Publikasi</h1>
-                <p className="text-lg text-text-secondary mt-2">Jelajahi data dan publikasi terkini dari BPS Provinsi Bengkulu.</p>
+                <p className="text-lg text-text-secondary mt-2">Jelajahi data dan publikasi terkini dari BPS Provinsi Nusa Tenggara Timur.</p>
             </header>
 
             {loading && <p className="text-center">Memuat data...</p>}
